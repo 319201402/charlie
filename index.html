@@ -34,6 +34,15 @@ html,body{height:100%;margin:0;overflow:hidden}
 .start-menu-right-list{font-size:12px;color:#fff;list-style:none;margin:0;padding:0;margin-top:30px}
 .mrl-item{margin-left:10px;padding:8px 5px;line-height:1;border:solid 1px transparent;border-radius:3px;cursor:default;}
 .mrl-item:hover{border-color:#000;box-shadow:inset 0 0 0 1px #bbb;background:linear-gradient(rgba(255,255,255,.3) 10%,transparent 50%,rgba(0,0,0,.3) 50%,transparent)}
+.window-frame{position:relative;left:50px;top:50px;font-size:14px;color:#000;width:307px;height:143px;border:solid 1px #000;border-radius:7px;cursor:default;background:rgba(213,242,255,.5) linear-gradient(45deg,transparent 5%,rgba(255,255,255,.3) 10%,transparent 15%,rgba(255,255,255,.3) 20%,transparent 25%,transparent 45%,rgba(255,255,255,.3) 50%,transparent 55%,rgba(180,180,180,.3) 65%,transparent 75%,rgba(255,255,255,.3) 80%,transparent 90%);box-shadow:inset 0 0 0 1px #fff,0 0 15px #000}
+.window-header{position:relative;line-height:29px;padding-left:7px;font-size:12px;cursor:default;font-family:sans-serif;}
+.window-header>button{position:absolute;right:7px;width:47px;font-size:20px;padding:0;line-height:18px;color:#fff;background:#F3B2A9 linear-gradient(#E5A69D 50%,#EA9386 50%,#C14835 51%,#D68674);border:solid 1px rgba(0,0,0,.5);margin-top:-1px;border-radius:0 0 5px 5px;outline:none;box-shadow:inset 0 0 2px 1px #fff;text-shadow:0 0 1px #000;-webkit-appearance:none;cursor:default;}
+.window-body{position:absolute;font-size:12px;line-height:1.1;color:#000;top:28px;left:6px;right:6px;bottom:6px;padding:10px;font-family:serif;background:#FBFBFB;border:solid 1px #666;box-shadow:0 0 1px #fff;cursor:default;border-radius:1px}
+.window-body-msg{margin-bottom:10px}
+.window-btns{margin-top:15px;text-align:right}
+.window-btn{width:82px;height:19px;font-size:12px;font-family:serif;padding:0;margin-left:10px;border:solid 1px #707070;background:linear-gradient(#f2f2f2,#f0f0f0 50%,#dbdbdb 60%,#D2D2D2);box-shadow:inset 0 0 0 1px #fff;border-radius:3px;cursor:default}
+.window-btn:hover{border-color:#3C7FB1}
+.window-btn:focus{border-color:#3C7FB1;outline:dotted 1px #CCADAB;outline-offset:-3px;box-shadow:inset 0 0 1px 1px #40D6FC}
 </style>
 </head>
 <body>
@@ -66,7 +75,19 @@ html,body{height:100%;margin:0;overflow:hidden}
 
 <div class="wrapper">
 	<div class="viewport">
-
+		<div class="window-frame">
+			<div class="window-header">
+				<span>Microsoft Windows</span>
+				<button>&times;</button>
+			</div>
+			<div class="window-body">
+				<div class="window-body-msg">应用程序没有响应。如果您继续等待，程序可能会响应。</div>
+				<div class="window-body-msg">您想结果这个进程吗？</div>
+				<div class="window-btns">
+					<button class="window-btn">结束进程(E)</button><button class="window-btn">取消</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="dock">
 		<div class="dock-bg"></div>

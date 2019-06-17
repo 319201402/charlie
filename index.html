@@ -74,7 +74,7 @@ html,body{height:100%;margin:0;overflow:hidden}
 </svg>
 
 <div class="wrapper">
-	<div class="viewport">
+	<div class="viewport"><!--
 		<div class="window-frame">
 			<div class="window-header">
 				<span>Microsoft Windows</span>
@@ -87,7 +87,7 @@ html,body{height:100%;margin:0;overflow:hidden}
 					<button class="window-btn">结束进程(E)</button><button class="window-btn">取消</button>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 	<div class="dock">
 		<div class="dock-bg"></div>
@@ -112,10 +112,66 @@ html,body{height:100%;margin:0;overflow:hidden}
 		</div>
 	</div>
 </div>
+	
+	
+
+<template id="tmpl-main-window">
+<style>
+menubar,menu-group,menu-item,menu-separator{display:block}
+menu-separator{margin-left:32px;border-top:solid 1px #ddd;border-bottom:solid 1px #fff}
+menu{margin:0;padding:0}
+menu-item{padding-left:35px;margin:3px 2px;border-radius:3px;border:solid 1px transparent;position:relative;z-index:1}
+menu-item:hover{border-color:#baddef}
+menubar{padding:0 2px;font-size:12px;background:linear-gradient(#fcfdfe,#e5eaf5 40%,#d3daed 40%,#d3daed);cursor:default}
+menu{display:inline-block;margin:1px 0;padding:0 8px;position:relative;border:solid 1px transparent;border-radius:3px}
+menu:hover{border-color:#aaa}
+menu-group{display:none;position:absolute;left:0;top:17px;min-width:120px;line-height:1.8;border:solid 1px #999;background:#f1f1f1}
+menu-group::before{content:'';position:absolute;left:30px;height:100%;border-left:solid 1px #ddd;border-right:solid 1px #fff}
+.content-area{height:100%;display:flex;flex-direction:column}
+.editor{flex:1;width:100%;resize:none;border-color:#89a}
+statusbar{position:relative;height:25px;width:100%;border-top:solid 1px #999;background:#f1eded}
+.cornor-resizer{position:absolute;bottom:2px;right:2px;width:8px;height:8px;}
+.cornor-resizer::after{content: '';position:absolute;background:#999;left:4px;top:4px;width:1px;height:1px;
+box-shadow:2px -4px 0 #fff,3px -4px 0 #d0d0d0,
+2px -3px 0 #d0d0d0,3px -3px 0 #b0b0b0,
+-1px -1px 0 #fff,0 -1px 0 #d0d0d0,
+-1px 0 0 #d0d0d0,
+2px -1px 0 #fff,3px -1px 0 #d0d0d0,
+2px 0 0 #d0d0d0,3px 0 #b0b0b0,
+-4px 2px 0 #fff,-3px 2px 0 #d0d0d0,
+-4px 3px 0 #d0d0d0,-3px 3px 0 #b0b0b0,
+-1px 2px 0 #fff,0 2px 0 #d0d0d0,
+-1px 3px 0 #d0d0d0,0 3px 0 #b0b0b0,
+2px 2px 0 #fff,3px 2px 0 #d0d0d0,
+2px 3px 0 #d0d0d0,3px 3px 0 #b0b0b0;
+}
+</style>
+<div class="content-area">
+<menubar>
+	<menu>文件(F)
+		<menu-group>
+			<menu-item>选项(P)</menu-item>
+			<menu-separator></menu-separator>
+			<menu-item>退出(X)</menu-item>
+		</menu-group>
+	</menu>
+	<menu>帮助(H)
+		<menu-group>
+			<menu-item>关于(B)</menu-item>
+		</menu-group>
+	</menu>
+</menubar>
+<textarea class="editor"></textarea>
+<statusbar>
+	<div class="cornor-resizer window-borders wb-se" data-dir="1"></div>
+</statusbar>
+</div>
+</template>
+
 <script>
 function _$(s){return document.querySelector(s)}
 function startMenu(e){var t=e.target;
-document.body.classList[t.classList.contains('viewport')?'remove':'toggle']('start-show')
+document.body.classList[t.classList.contains('start-btn')?'toggle':'remove']('start-show')
 }
 _$('.viewport').addEventListener('click',startMenu)
 _$('#start').addEventListener('click',startMenu)
@@ -130,5 +186,12 @@ setInterval((function _tm(){
 	return _tm
 }()),1e3)
 </script>
+<script src="aero.class.js"></script>
+<script>
+_$('.viewport').appendChild(
+	new Aero({title:'notepad.exe',msg:document.querySelector('#tmpl-main-window').content,width:500,height:400})
+).show()
+</script>
+
 </body>
 </html>
